@@ -4,7 +4,7 @@ const path = require('path');
 const ProcessedMessage = require('./models/ProcessedMessage');
 
 // MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/whatsapp';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://anushhaaa12:%40Nusha12%21@cluster0.syfn8y6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
