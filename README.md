@@ -217,4 +217,3 @@ This is a demo project for evaluation purposes. Feel free to fork and modify for
 
 ---
 
-**Built with ❤️ using React, Node.js, and MongoDB Atlas**
