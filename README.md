@@ -1,9 +1,7 @@
 # WhatsApp Web Clone
-
 A full-stack WhatsApp Web-like chat interface that displays real-time WhatsApp conversations using webhook data. Built with Node.js, React, and MongoDB.
 
 ## 🚀 Features
-
 - **WhatsApp-like UI**: Clean, responsive interface mimicking WhatsApp Web
 - **Real-time Chat Display**: Show conversations grouped by user
 - **Message Status**: Display sent, delivered, and read status indicators
@@ -16,17 +14,21 @@ A full-stack WhatsApp Web-like chat interface that displays real-time WhatsApp c
 ### Backend
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
-- **MongoDB** - Database (with Mongoose ODM)
+- **MongoDB Atlas** - Cloud database (with Mongoose ODM)
 - **CORS** - Cross-origin resource sharing
 
 ### Frontend
 - **React.js** - UI library
 - **CSS3** - Styling (WhatsApp-like design)
 
-## 📁 Project Structure
+### Deployment
+- **Backend**: Render (https://whatsapp-project-jngb.onrender.com)
+- **Frontend**: Netlify (https://chatsapp-wp.netlify.app)
+- **Database**: MongoDB Atlas (Cloud)
 
+## 📁 Project Structure
 ```
-whatsapp project/
+whatsapp-project/
 ├── backend/
 │   ├── models/
 │   │   ├── ProcessedMessage.js
@@ -49,7 +51,7 @@ whatsapp project/
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- MongoDB (local or MongoDB Atlas)
+- MongoDB Atlas account (or local MongoDB)
 - Git
 
 ### Installation
@@ -57,7 +59,7 @@ whatsapp project/
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd whatsapp project
+   cd whatsapp-project
    ```
 
 2. **Install backend dependencies**
@@ -72,9 +74,10 @@ whatsapp project/
    npm install
    ```
 
-4. **Set up MongoDB**
-   - Start local MongoDB server, or
-   - Use MongoDB Atlas (cloud)
+4. **Set up MongoDB Atlas**
+   - Create a MongoDB Atlas cluster
+   - Get your connection string
+   - Update the MongoDB URI in your environment variables
 
 5. **Process sample payloads**
    ```bash
@@ -86,14 +89,14 @@ whatsapp project/
    ```bash
    node server.js
    ```
-   Server runs on: `http://localhost:5000`
+   Server runs on: http://localhost:5000
 
 7. **Start the frontend**
    ```bash
    cd ../frontend
    npm start
    ```
-   App opens at: `http://localhost:3000`
+   App opens at: http://localhost:3000
 
 ## 📡 API Endpoints
 
@@ -123,7 +126,7 @@ whatsapp project/
 
 ## 🌐 Deployment
 
-### Netlify Deployment
+### Frontend Deployment (Netlify)
 
 1. **Build the frontend**
    ```bash
@@ -135,22 +138,49 @@ whatsapp project/
    - Connect your GitHub repository to Netlify
    - Set build command: `npm run build`
    - Set publish directory: `build`
-   - Add environment variable: `REACT_APP_API_URL=https://your-backend-url.com/api`
+   - Add environment variable: `REACT_APP_API_URL=https://whatsapp-project-jngb.onrender.com/api`
 
-3. **Backend Deployment**
-   - Deploy backend to Render, Railway, or Heroku
-   - Update frontend API URL to point to deployed backend
+3. **Auto-deploy**: Netlify automatically deploys on every push to main branch
 
-### Environment Variables
+### Backend Deployment (Render)
 
-**Frontend (.env)**
+1. **Connect GitHub repository to Render**
+   - Create new Web Service on Render
+   - Connect your GitHub repository
+   - Set root directory: `backend`
+   - Set build command: `npm install`
+   - Set start command: `node server.js`
+
+2. **Environment Variables on Render**
+   ```
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
+   PORT=5000
+   ```
+
+3. **Auto-deploy**: Render automatically deploys on every push to main branch
+
+### Database (MongoDB Atlas)
+
+1. **Create MongoDB Atlas Cluster**
+   - Sign up at mongodb.com/atlas
+   - Create a new cluster (free tier available)
+   - Create database user and whitelist IP addresses
+   - Get connection string
+
+2. **Database Population**
+   - Run `node webhookProcessor.js` locally or on deployment to populate with sample data
+   - Sample conversations include Ravi Kumar and Neha Joshi
+
+## 🔧 Environment Variables
+
+### Frontend (.env)
+```env
+REACT_APP_API_URL=https://whatsapp-project-jngb.onrender.com/api
 ```
-REACT_APP_API_URL=https://your-backend-url.com/api
-```
 
-**Backend (.env)**
-```
-MONGODB_URI=mongodb://localhost:27017/whatsapp
+### Backend (.env)
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
 PORT=5000
 ```
 
@@ -165,7 +195,7 @@ PORT=5000
 ## 🔧 Development
 
 ### Running Locally
-1. Start MongoDB
+1. Start MongoDB Atlas connection
 2. Run `node webhookProcessor.js` to populate database
 3. Start backend: `node server.js`
 4. Start frontend: `npm start`
@@ -173,15 +203,18 @@ PORT=5000
 ### Adding Sample Data
 Place WhatsApp webhook payload JSON files in `backend/payloads/whatsapp sample payloads/` and run the webhook processor.
 
-## 📝 License
+## 🌍 Live Demo
 
+- **Frontend**: [https://chatsapp-wp.netlify.app](https://chatsapp-wp.netlify.app)
+- **Backend API**: [https://whatsapp-project-jngb.onrender.com](https://whatsapp-project-jngb.onrender.com)
+- **API Health Check**: [https://whatsapp-project-jngb.onrender.com/api/conversations](https://whatsapp-project-jngb.onrender.com/api/conversations)
+
+## 📝 License
 This project is created for educational purposes as part of a full-stack development evaluation task.
 
 ## 🤝 Contributing
-
 This is a demo project for evaluation purposes. Feel free to fork and modify for your own learning.
 
 ---
 
-**Live Demo**: [Your Netlify URL here]
-**Backend API**: [Your Backend URL here]
+**Built with ❤️ using React, Node.js, and MongoDB Atlas**
